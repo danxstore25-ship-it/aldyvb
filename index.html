@@ -1,0 +1,517 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Products by Aldy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-black: #121212;
+            --dark-black: #0a0a0a;
+            --light-black: #1e1e1e;
+            --accent-red: #ff2e2e;
+            --accent-gold: #ffb400;
+            --white: #ffffff;
+            --light-gray: #b0b0b0;
+            --dark-gray: #2a2a2a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--dark-black) 100%);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(to right, var(--accent-gold), var(--accent-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .header p {
+            color: var(--light-gray);
+            font-size: 1.1rem;
+        }
+        
+        .divider {
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--accent-red), transparent);
+            margin: 25px 0;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .product-card {
+            background: var(--light-black);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--dark-gray);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(255, 46, 46, 0.2);
+        }
+        
+        .product-header {
+            background: linear-gradient(135deg, var(--dark-black) 0%, var(--dark-gray) 100%);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-red);
+        }
+        
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--accent-gold);
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            color: var(--accent-red);
+            font-weight: 800;
+        }
+        
+        .product-body {
+            padding: 20px;
+        }
+        
+        .product-features {
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+        
+        .product-features li {
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--dark-gray);
+            display: flex;
+            align-items: center;
+        }
+        
+        .product-features li:before {
+            content: "✓";
+            color: var(--accent-red);
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .product-note {
+            background: var(--dark-gray);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid var(--accent-gold);
+            font-size: 0.9rem;
+        }
+        
+        .contact-section {
+            background: var(--light-black);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-title {
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 25px;
+            background: var(--dark-gray);
+            border-radius: 10px;
+            min-width: 200px;
+            transition: transform 0.3s;
+        }
+        
+        .contact-method:hover {
+            transform: scale(1.05);
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-red);
+        }
+        
+        .contact-info {
+            font-weight: 600;
+        }
+        
+        .payment-section {
+            background: var(--light-black);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-red);
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .payment-method {
+            background: var(--dark-gray);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .payment-name {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+        
+        .payment-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin: 8px 0;
+        }
+        
+        .payment-account {
+            color: var(--light-gray);
+        }
+        
+        .unavailable {
+            opacity: 0.6;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+            color: var(--light-gray);
+            border-top: 1px solid var(--dark-gray);
+            width: 100%;
+        }
+        
+        .guarantee {
+            color: var(--accent-gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            text-transform: uppercase;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-red);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transform: rotate(5deg);
+        }
+        
+        .highlight {
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PREMIUM PRODUCT BY ALDY</h1>
+            <p>Kualitas Premium dengan Harga Terjangkau</p>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="badge">POPULER</div>
+                    <div class="product-title">SELES UNBOT</div>
+                    <div class="product-price">Rp 8.000</div>
+                </div>
+                <div class="product-body">
+                    <ul class="product-features">
+                        <li>Bisa Buat Akun Jasher</li>
+                        <li>Dikasih ROM Public</li>
+                        <li>Unbot Anti Delay</li>
+                        <li>Garansi 7 Hari</li>
+                        <li>Support 24/7</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-title">UNBOT PERMANEN</div>
+                    <div class="product-price">Rp 5.000</div>
+                </div>
+                <div class="product-body">
+                    <ul class="product-features">
+                        <li>Bisa Buat Akun Jasher</li>
+                        <li>Dikasih ROM Public</li>
+                        <li>Unbot Anti Delay</li>
+                        <li>Garansi Permanen</li>
+                        <li>Update Berkala</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-title">PEMBUATAN WEB</div>
+                    <div class="product-price">Rp 7.000</div>
+                </div>
+                <div class="product-body">
+                    <ul class="product-features">
+                        <li>Desain Modern</li>
+                        <li>Responsif di Semua Device</li>
+                        <li>Optimasi SEO</li>
+                        <li>Garansi 1 Bulan</li>
+                        <li>Revisi 3x</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-title">PANEL UNLI</div>
+                    <div class="product-price">Rp 8.000</div>
+                </div>
+                <div class="product-body">
+                    <ul class="product-features">
+                        <li>Akses Unlimited</li>
+                        <li>Support Multi-Device</li>
+                        <li>Update Terus Menerus</li>
+                        <li>Garansi 30 Hari</li>
+                        <li>Banyak Fitur</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <h2 class="section-title">PRICE LIST NOKTEL BY ALDY</h2>
+        
+        <div class="products-grid">
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-title">NOKTEL ID 1</div>
+                    <div class="product-price">Rp 25.000</div>
+                </div>
+                <div class="product-body">
+                    <ul class="product-features">
+                        <li>Kualitas Terbaik</li>
+                        <li>Garansi 30 Hari</li>
+                        <li>Anti HB</li>
+                        <li>Aman Terjamin</li>
+                        <li>Support Cepat</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-title">NOKTEL ID 2</div>
+                    <div class="product-price">Rp 23.000</div>
+                </div>
+                <div class="product-body">
+                    <ul class="product-features">
+                        <li>Kualitas Terbaik</li>
+                        <li>Garansi 30 Hari</li>
+                        <li>Anti HB</li>
+                        <li>Aman Terjamin</li>
+                        <li>Support Cepat</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Product 7 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-title">NOKTEL ID 5</div>
+                    <div class="product-price">Rp 15.000</div>
+                </div>
+                <div class="product-body">
+                    <ul class="product-features">
+                        <li>Kualitas Terbaik</li>
+                        <li>Garansi 30 Hari</li>
+                        <li>Anti HB</li>
+                        <li>Aman Terjamin</li>
+                        <li>Support Cepat</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Product 8 -->
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-title">NOKTEL ID 6</div>
+                    <div class="product-price">Rp 10.000</div>
+                </div>
+                <div class="product-body">
+                    <ul class="product-features">
+                        <li>Kualitas Terbaik</li>
+                        <li>Garansi 30 Hari</li>
+                        <li>Anti HB</li>
+                        <li>Aman Terjamin</li>
+                        <li>Support Cepat</li>
+                    </ul>
+                    <div class="product-note">
+                        <span class="highlight">BISA NEGO ASAL NGOTAK</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="product-note" style="margin: 30px 0;">
+            <p><span class="highlight">NOTE:</span> Akun yang dijual sudah terjamin aman, Anti HB. Jangan ragu jangan bimbang buy di All Smitsz murah dah bergaransi 🗿🚬</p>
+        </div>
+        
+        <div class="contact-section">
+            <h3 class="contact-title">HUBUNGI KAMI</h3>
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-info">WhatsApp</div>
+                    <div class="contact-detail">083151557611</div>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <div class="contact-info">Telegram</div>
+                    <div class="contact-detail">@zenzz18</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="payment-section">
+            <h3 class="section-title">METODE PEMBAYARAN</h3>
+            <div class="payment-methods">
+                <div class="payment-method">
+                    <div class="payment-name">DANA</div>
+                    <div class="payment-number">081361594190</div>
+                    <div class="payment-account">A/N: rarabmw</div>
+                </div>
+                
+                <div class="payment-method">
+                    <div class="payment-name">GOPAY</div>
+                    <div class="payment-number">081361594190</div>
+                    <div class="payment-account">A/N: BLUM PREM</div>
+                </div>
+                
+                <div class="payment-method unavailable">
+                    <div class="payment-name">OVO</div>
+                    <div class="payment-number">TIDAK TERSEDIA</div>
+                    <div class="payment-account">-</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 Premium Products by Aldy. All rights reserved.</p>
+            <p class="guarantee">TERJAMIN AMAN • ANTI HB • BERGARANSI</p>
+        </div>
+    </div>
+</body>
+</html>
